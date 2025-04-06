@@ -1,63 +1,50 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import ColorPicker from './ColorPicker';
 import Preview from './Preview';
-import { isThemeData, updateDomWithColors } from './utils';
+import { isThemeData, ThemeData } from './utils';
 import ThemeButtons from './ThemeButtons';
 
 const App = () => {
+    const [themeData, setThemeData] = useState<ThemeData | null>(null);
+
     useEffect(() => {
-        const applyTheme = async () => {
+        const applyInitialTheme = async () => {
             try {
                 const fetchedData = await fetch('/api/theme');
-                const themeData = await fetchedData.json();
+                const fetchedThemeData = await fetchedData.json();
 
-                console.log('got themeData:');
-                console.log(themeData);
+                console.log('applyInitialTheme: got fetchedThemeData:');
+                console.log(fetchedThemeData);
 
-                if (!isThemeData(themeData)) {
+                if (!isThemeData(fetchedThemeData)) {
                     throw new Error('Got invalid themeData');
                 }
 
-                // apply current theme setting
-                updateDomWithColors(
-                    'background',
-                    'main',
-                    themeData.currentTheme.backgroundColor
-                );
-
-                updateDomWithColors(
-                    'foreground',
-                    'main',
-                    themeData.currentTheme.foregroundColor
-                );
-
-                // apply current draft setting
-                updateDomWithColors(
-                    'background',
-                    'preview',
-                    themeData.currentTheme.backgroundColor
-                );
-                updateDomWithColors(
-                    'foreground',
-                    'preview',
-                    themeData.currentTheme.foregroundColor
-                );
+                setThemeData(fetchedThemeData);
             } catch (error: any) {
                 window.alert('Something went wrong - please check logs');
-                console.log(error.message);
+                console.log('applyInitialTheme caught error: ' + error.message);
             }
         };
 
-        applyTheme();
+        applyInitialTheme();
     }, []);
 
     return (
-        <div>
-            <ColorPicker />
-            <ThemeButtons />
-            <Preview />
+        <div
+            style={{
+                backgroundColor: themeData?.currentTheme.backgroundColor,
+                color: themeData?.currentTheme.foregroundColor,
+            }}
+        >
+            <ColorPicker setThemeData={setThemeData} />
+            <ThemeButtons
+                setThemeData={setThemeData}
+                themeData={themeData as ThemeData}
+            />
+            <Preview themeData={themeData as ThemeData} />
         </div>
     );
 };

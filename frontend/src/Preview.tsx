@@ -1,4 +1,10 @@
-const Preview = () => {
+import { ThemeData } from './utils';
+
+interface PreviewProps {
+    themeData: ThemeData;
+}
+
+const Preview = ({ themeData }: PreviewProps) => {
     return (
         <div
             style={{
@@ -12,6 +18,8 @@ const Preview = () => {
                 style={{
                     border: '1px solid black',
                     padding: '2rem',
+                    background: themeData?.draftTheme.backgroundColor,
+                    color: themeData?.draftTheme.foregroundColor,
                 }}
             >
                 Hello world!

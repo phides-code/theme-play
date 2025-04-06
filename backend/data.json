@@ -1,14 +1,14 @@
 {
     "currentTheme": {
-        "backgroundColor": "black",
-        "foregroundColor": "orange"
+        "backgroundColor": "green",
+        "foregroundColor": "blue"
     },
     "previousTheme": {
-        "backgroundColor": "red",
-        "foregroundColor": "green"
+        "backgroundColor": "black",
+        "foregroundColor": "white"
     },
     "draftTheme": {
-        "backgroundColor": "purple",
-        "foregroundColor": "black"
+        "backgroundColor": "green",
+        "foregroundColor": "blue"
     }
 }

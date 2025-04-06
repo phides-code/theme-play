@@ -1,6 +1,10 @@
-import { updateDomWithColors } from './utils';
+import { ThemeData } from './utils';
 
-const ColorPicker = () => {
+interface ColorPickerProps {
+    setThemeData: React.Dispatch<React.SetStateAction<ThemeData | null>>;
+}
+
+const ColorPicker = ({ setThemeData }: ColorPickerProps) => {
     const colors: string[] = [
         'black',
         'white',
@@ -15,13 +19,31 @@ const ColorPicker = () => {
     const handleBackgroundChange = (
         ev: React.ChangeEvent<HTMLInputElement>
     ) => {
-        updateDomWithColors('background', 'preview', ev.target.value);
+        setThemeData(
+            (prev) =>
+                ({
+                    ...prev,
+                    draftTheme: {
+                        ...prev?.draftTheme,
+                        backgroundColor: ev.target.value,
+                    },
+                } as ThemeData)
+        );
     };
 
     const handleForegroundChange = (
         ev: React.ChangeEvent<HTMLInputElement>
     ) => {
-        updateDomWithColors('foreground', 'preview', ev.target.value);
+        setThemeData(
+            (prev) =>
+                ({
+                    ...prev,
+                    draftTheme: {
+                        ...prev?.draftTheme,
+                        foregroundColor: ev.target.value,
+                    },
+                } as ThemeData)
+        );
     };
 
     return (

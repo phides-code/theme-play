@@ -27,13 +27,13 @@ export const isThemeData = (data: any): data is ThemeData => {
     );
 };
 
-export const updateDomWithColors = (
-    colorType: 'background' | 'foreground',
-    area: 'main' | 'preview',
-    colorName: string
-) => {
-    document.documentElement.style.setProperty(
-        `--${colorType}-color-${area}`,
-        colorName
+export const themesAreEqual = (a: ThemeData, b: ThemeData): boolean => {
+    return (
+        a.currentTheme.backgroundColor === b.currentTheme.backgroundColor &&
+        a.currentTheme.foregroundColor === b.currentTheme.foregroundColor &&
+        a.previousTheme.backgroundColor === b.previousTheme.backgroundColor &&
+        a.previousTheme.foregroundColor === b.previousTheme.foregroundColor &&
+        a.draftTheme.backgroundColor === b.draftTheme.backgroundColor &&
+        a.draftTheme.foregroundColor === b.draftTheme.foregroundColor
     );
 };

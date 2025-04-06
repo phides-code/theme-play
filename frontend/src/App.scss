@@ -7,22 +7,8 @@
     font-weight: 400;
 }
 
-:root {
-    --background-color-main: white;
-    --foreground-color-main: black;
-    --background-color-preview: white;
-    --foreground-color-preview: black;
-}
-
 body {
     margin: 0;
     display: flex;
     place-items: center;
-    background-color: var(--background-color-main);
-    color: var(--foreground-color-main);
-}
-
-.previewArea {
-    background-color: var(--background-color-preview);
-    color: var(--foreground-color-preview);
 }
