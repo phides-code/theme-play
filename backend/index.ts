@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import path from 'path';
 import getThemeData from './getThemeData';
+import putThemeData from './putThemeData';
 
 const app: Express = express();
 const port = '8000';
@@ -11,6 +12,8 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../../frontend/build')));
 
 app.get('/api/theme', getThemeData);
+
+app.put('/api/theme', putThemeData);
 
 app.get('/{*splat}', (_: Request, res: Response) => {
     res.sendFile(path.resolve(__dirname, '../../frontend/build', 'index.html'));

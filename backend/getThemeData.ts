@@ -1,14 +1,14 @@
-import path from 'path';
-import fs from 'fs/promises';
 import { Request, Response } from 'express';
+import { getFileData } from './utils';
 
 const getThemeData = async (_: Request, res: Response): Promise<void> => {
     try {
-        const filePath = path.join(__dirname, '../data.json');
-        const fileContent = await fs.readFile(filePath, 'utf8');
-        const jsonData = JSON.parse(fileContent);
+        const fileData = await getFileData();
 
-        res.status(200).json(jsonData);
+        console.log('Got fileData: ');
+        console.log(fileData);
+
+        res.status(200).json(fileData);
     } catch (error: any) {
         console.log('getThemeData caught error: ');
         console.log(error.message);
