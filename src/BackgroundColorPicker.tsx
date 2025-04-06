@@ -1,7 +1,7 @@
-import { useState } from 'react';
-
 const BackgroundColorPicker = () => {
     const colors: string[] = [
+        'black',
+        'white',
         'red',
         'orange',
         'yellow',
@@ -10,33 +10,70 @@ const BackgroundColorPicker = () => {
         'purple',
     ];
 
-    const [selectedBackgroundColor, setSelectedBackgroundColor] =
-        useState<string>('');
+    const handleBackgroundChange = (
+        ev: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        document.documentElement.style.setProperty(
+            '--background-color',
+            ev.target.value
+        );
+    };
 
-    const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedBackgroundColor(ev.target.value);
+    const handleForegroundChange = (
+        ev: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        document.documentElement.style.setProperty(
+            '--foreground-color',
+            ev.target.value
+        );
     };
 
     return (
-        <div>
-            <div>Select a background color:</div>
+        <div
+            style={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                margin: '0 auto',
+            }}
+        >
+            <div>
+                <div>Select a background color:</div>
 
-            <form>
-                {colors.map((color) => (
-                    <div key={color}>
-                        <label>
-                            <input
-                                type='radio'
-                                name='backgroundColorPicker'
-                                value={color}
-                                onChange={handleChange}
-                            />
-                            {color}
-                        </label>
-                    </div>
-                ))}
-            </form>
-            <div>selectedBackgroundColor: {selectedBackgroundColor}</div>
+                <form>
+                    {colors.map((color) => (
+                        <div key={color}>
+                            <label>
+                                <input
+                                    type='radio'
+                                    name='backgroundColorPicker'
+                                    value={color}
+                                    onChange={handleBackgroundChange}
+                                />
+                                {color}
+                            </label>
+                        </div>
+                    ))}
+                </form>
+            </div>
+            <div>
+                <div>Select a foreground color:</div>
+
+                <form>
+                    {colors.map((color) => (
+                        <div key={color}>
+                            <label>
+                                <input
+                                    type='radio'
+                                    name='foregroundColorPicker'
+                                    value={color}
+                                    onChange={handleForegroundChange}
+                                />
+                                {color}
+                            </label>
+                        </div>
+                    ))}
+                </form>
+            </div>
         </div>
     );
 };
