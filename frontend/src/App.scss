@@ -16,7 +16,9 @@ body {
     margin: 0;
     display: flex;
     place-items: center;
+}
 
+.previewArea {
     background-color: var(--background-color);
     color: var(--foreground-color);
 }

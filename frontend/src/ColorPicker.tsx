@@ -1,4 +1,4 @@
-const BackgroundColorPicker = () => {
+const ColorPicker = () => {
     const colors: string[] = [
         'black',
         'white',
@@ -78,4 +78,4 @@ const BackgroundColorPicker = () => {
     );
 };
 
-export default BackgroundColorPicker;
+export default ColorPicker;

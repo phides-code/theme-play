@@ -1,11 +1,12 @@
 import './App.scss';
-import BackgroundColorPicker from './BackgroundColorPicker';
+import ColorPicker from './ColorPicker';
+import Preview from './Preview';
 
 const App = () => {
     return (
         <div>
-            <BackgroundColorPicker />
-            <div>Hello world!</div>
+            <ColorPicker />
+            <Preview />
         </div>
     );
 };
