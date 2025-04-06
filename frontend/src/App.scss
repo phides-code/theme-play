@@ -1,24 +1,28 @@
 #root {
     margin: 0 auto;
     width: 100%;
-}
 
-:root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
+}
 
-    --background-color: white;
-    --foreground-color: black;
+:root {
+    --background-color-main: white;
+    --foreground-color-main: black;
+    --background-color-preview: white;
+    --foreground-color-preview: black;
 }
 
 body {
     margin: 0;
     display: flex;
     place-items: center;
+    background-color: var(--background-color-main);
+    color: var(--foreground-color-main);
 }
 
 .previewArea {
-    background-color: var(--background-color);
-    color: var(--foreground-color);
+    background-color: var(--background-color-preview);
+    color: var(--foreground-color-preview);
 }

@@ -1,3 +1,5 @@
+import { updateDomWithColors } from './utils';
+
 const ColorPicker = () => {
     const colors: string[] = [
         'black',
@@ -13,19 +15,13 @@ const ColorPicker = () => {
     const handleBackgroundChange = (
         ev: React.ChangeEvent<HTMLInputElement>
     ) => {
-        document.documentElement.style.setProperty(
-            '--background-color',
-            ev.target.value
-        );
+        updateDomWithColors('background', 'preview', ev.target.value);
     };
 
     const handleForegroundChange = (
         ev: React.ChangeEvent<HTMLInputElement>
     ) => {
-        document.documentElement.style.setProperty(
-            '--foreground-color',
-            ev.target.value
-        );
+        updateDomWithColors('foreground', 'preview', ev.target.value);
     };
 
     return (
